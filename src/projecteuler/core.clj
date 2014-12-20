@@ -116,7 +116,26 @@
     )  
   
   )  
- 
+
+
+(defn pe5 [x]
+ "What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+ (* 2 3 5 7 11 13 17 19 4 3 2)
+ " 
+ (let [r (set (range 1 (inc x)))]
+ (loop [y 1]
+   (if (clojure.set/subset? r (set (factor y)))
+     (do 
+       (println y (factor y))
+        y
+     )
+     (recur (inc y))
+     )
+   ))
+ )
+
+
+
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -125,5 +144,6 @@
   (println "PE2 is" (pe2 4000000))
   (println "PE3 is" (pe3 600851475143))
   (println "PE4 is" (pe4))
+  (println "PE5 is" (* 2 3 5 7 11 13 17 19 4 3 2))
  )
   
