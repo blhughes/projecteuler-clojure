@@ -81,7 +81,41 @@
     )
   )
     
+(defn revstr [x] (apply str (reverse (str x))))    
+(defn palindrome? [x] (= (str x) (revstr x)))
+(defn factor [x] 
+  (filter 
+     (fn [y] (= 0 (mod x y)))
+     (range 1 (inc x)))
+)  
+(defn size3factors? [x] 
+  (if (> 2 (count (seq x)))
+    false
+    (if (and (= 3 (count (str (first x ))))
+             (= 3 (count (str (last  x ))))
+             )
+      true      
+      (recur (rest (drop-last x)))
+      
+      )
+    )
+  )
   
+(defn pe4
+  "A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+  Find the largest palindrome made from the product of two 3-digit numbers."
+  []
+  (loop [x 1000000]
+    (if ( and
+         (palindrome? x)
+         (size3factors? (factor x))
+       )
+      x      
+      (recur (dec x))
+      )
+    )  
+  
+  )  
  
 
 (defn -main
@@ -90,5 +124,6 @@
   (println "PE1 is" (pe1 1000))
   (println "PE2 is" (pe2 4000000))
   (println "PE3 is" (pe3 600851475143))
+  (println "PE4 is" (pe4))
  )
   
