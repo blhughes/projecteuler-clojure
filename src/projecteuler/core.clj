@@ -134,7 +134,17 @@
    ))
  )
 
-
+(defn pe6 [x]
+  (- 
+    (expt (reduce + (range 1 (inc x))) 2)   
+    (reduce + 
+            (map 
+              (fn [y]
+                (expt y 2)
+                )
+              
+            (range 1 (inc x)))))
+)
 
 
 (defn -main
