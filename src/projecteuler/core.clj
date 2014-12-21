@@ -136,24 +136,37 @@
 
 (defn pe6 [x]
   (- 
-    (expt (reduce + (range 1 (inc x))) 2)   
+    (math/expt (reduce + (range 1 (inc x))) 2)   
     (reduce + 
-            (map 
-              (fn [y]
-                (expt y 2)
-                )
-              
-            (range 1 (inc x)))))
+            (map
+              (fn [y](math/expt y 2))
+              (range 1 (inc x))
+              )
+            )
+    )
 )
+
+(defn pe7 [x]
+  (loop [y 1 prime 2]
+    (if (= y x)
+      prime
+      (recur (inc y) (nextprime prime))
+      )
+    )
+  
+  )
 
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Print the results of each project euler problem"
   [& args]
   (println "PE1 is" (pe1 1000))
   (println "PE2 is" (pe2 4000000))
   (println "PE3 is" (pe3 600851475143))
   (println "PE4 is" (pe4))
   (println "PE5 is" (* 2 3 5 7 11 13 17 19 4 3 2))
+  (println "PE6 is" (pe6 100))
+  (println "PE7 is" (pe7 10001))
+  
  )
   
